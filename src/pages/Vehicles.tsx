@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
 import { vehicleApi } from '../services/api';
 import { maskPlate, maskCurrency, parseCurrencyToNumber } from '../utils/masks';
@@ -10,7 +11,33 @@ const Vehicles: React.FC = () => {
   const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState<any>(null);
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const highlightPlate = location.state?.highlightPlate;
+
   const [vehicles, setVehicles] = useState<any[]>([]);
+  const [localSearchQuery, setLocalSearchQuery] = useState('');
+
+  const filteredVehicles = React.useMemo(() => {
+    let result = vehicles;
+    
+    // Header search highlight
+    if (highlightPlate && !localSearchQuery) {
+      result = result.filter(v => v.plate === highlightPlate);
+    }
+
+    // Local table search
+    if (localSearchQuery) {
+      const q = localSearchQuery.toLowerCase();
+      result = result.filter(v => 
+        v.plate.toLowerCase().includes(q) || 
+        v.model.toLowerCase().includes(q) || 
+        v.brand.toLowerCase().includes(q)
+      );
+    }
+    
+    return result;
+  }, [vehicles, highlightPlate, localSearchQuery]);
   const [dialog, setDialog] = useState<{ isOpen: boolean; type: 'success' | 'error' | 'warning'; title: string; message: string }>({
     isOpen: false,
     type: 'success',
@@ -129,7 +156,7 @@ const Vehicles: React.FC = () => {
     { label: 'Frota Total', value: vehicles.length.toString(), change: '+12%', color: 'primary' },
     { label: 'Disponível', value: vehicles.filter(v => v.status === 'available').length.toString(), icon: 'check_circle', color: 'emerald' },
     { label: 'Locado', value: vehicles.filter(v => v.status === 'rented').length.toString(), icon: 'key', color: 'tertiary' },
-    { label: 'Em Uso', value: vehicles.filter(v => v.status === 'in_use').length.toString(), change: 'Live', color: 'error' },
+    { label: 'Em Manutenção', value: vehicles.filter(v => v.status === 'maintenance').length.toString(), icon: 'build', color: 'error' },
   ];
 
   return (
@@ -178,15 +205,19 @@ const Vehicles: React.FC = () => {
 
         {/* Vehicle List Container */}
         <div className="bg-surface-container-low rounded-2xl shadow-2xl shadow-black/20 border border-slate-800/30">
-          <div className="p-6 border-b border-slate-800/30 flex items-center justify-between">
-            <h3 className="font-headline font-bold text-lg">Lista de Inventário</h3>
-            <div className="flex gap-2">
-              <button className="p-2 hover:bg-surface-container-high rounded-lg text-slate-400 transition-colors">
-                <span className="material-symbols-outlined text-xl">filter_list</span>
-              </button>
-              <button className="p-2 hover:bg-surface-container-high rounded-lg text-slate-400 transition-colors">
-                <span className="material-symbols-outlined text-xl">download</span>
-              </button>
+          <div className="p-6 border-b border-slate-800/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <h3 className="font-headline font-bold text-lg w-full sm:w-auto">Lista de Inventário</h3>
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <div className="relative w-full sm:w-64">
+                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-[18px]">search</span>
+                <input 
+                  type="text"
+                  placeholder="Buscar marca, modelo ou placa..."
+                  value={localSearchQuery}
+                  onChange={(e) => setLocalSearchQuery(e.target.value)}
+                  className="w-full bg-surface-container-high/40 border border-slate-800/50 rounded-lg py-2 pl-9 pr-4 text-sm focus:ring-2 focus:ring-primary/50 text-on-surface-variant outline-none transition-all placeholder:text-slate-500"
+                />
+              </div>
             </div>
           </div>
           <div>
@@ -204,7 +235,15 @@ const Vehicles: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/20">
-                {vehicles.map((v, i) => (
+                {highlightPlate && (
+                  <tr>
+                    <td colSpan={8} className="px-6 py-2 bg-primary/10 text-xs font-bold text-primary flex items-center justify-between">
+                      <span>Exibindo veículo filtrado por placa: {highlightPlate}</span>
+                      <button onClick={() => navigate('/vehicles', { replace: true, state: {} })} className="underline">Limpar Filtro</button>
+                    </td>
+                  </tr>
+                )}
+                {filteredVehicles.map((v, i) => (
                   <tr key={i} className="hover:bg-surface-container-high/40 transition-colors group">
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
                       <span className="font-bold text-primary">{v.brand}</span>

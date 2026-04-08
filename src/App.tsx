@@ -5,6 +5,7 @@ import Vehicles from './pages/Vehicles';
 import Customers from './pages/Customers';
 import Rentals from './pages/Rentals';
 import Maintenance from './pages/Maintenance';
+import Documentation from './pages/Documentation';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const token = localStorage.getItem('locacar_token');
@@ -26,6 +27,7 @@ function App() {
         <Route path="/customers" element={<ProtectedRoute><Customers /></ProtectedRoute>} />
         <Route path="/rentals" element={<ProtectedRoute><Rentals /></ProtectedRoute>} />
         <Route path="/maintenance" element={<ProtectedRoute><Maintenance /></ProtectedRoute>} />
+        <Route path="/documentation" element={<ProtectedRoute><Documentation /></ProtectedRoute>} />
         <Route path="/" element={<Navigate to="/login" replace />} />
       </Routes>
       </BrowserRouter>

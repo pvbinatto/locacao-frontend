@@ -6,11 +6,54 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+import { vehicleApi } from '../services/api';
+
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
   const user = JSON.parse(localStorage.getItem('locacar_user') || '{}');
+
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [searchResults, setSearchResults] = React.useState<any[]>([]);
+  const [allVehicles, setAllVehicles] = React.useState<any[]>([]);
+  const [showResults, setShowResults] = React.useState(false);
+
+  React.useEffect(() => {
+    const fetchVehiclesForSearch = async () => {
+      try {
+        const data = await vehicleApi.list();
+        setAllVehicles(data);
+      } catch (err) {
+        console.error('Search init error:', err);
+      }
+    };
+    fetchVehiclesForSearch();
+  }, []);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const q = e.target.value;
+    setSearchQuery(q);
+    if (q.length > 1) {
+      const filtered = allVehicles.filter(v => 
+        v.plate.toLowerCase().includes(q.toLowerCase()) || 
+        v.model.toLowerCase().includes(q.toLowerCase()) ||
+        v.brand.toLowerCase().includes(q.toLowerCase())
+      );
+      setSearchResults(filtered.slice(0, 5));
+      setShowResults(true);
+    } else {
+      setSearchResults([]);
+      setShowResults(false);
+    }
+  };
+
+  const handleSelectVehicle = (v: any) => {
+    setSearchQuery('');
+    setSearchResults([]);
+    setShowResults(false);
+    navigate('/vehicles', { state: { highlightPlate: v.plate } });
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('locacar_token');
@@ -64,10 +107,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <span className="material-symbols-outlined">help</span>
             Suporte
           </a>
-          <a className="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-100 hover:bg-surface-container transition-colors font-headline tracking-tight text-sm font-medium" href="#">
+          <Link to="/documentation" className="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-100 hover:bg-surface-container transition-colors font-headline tracking-tight text-sm font-medium">
             <span className="material-symbols-outlined">description</span>
             Documentação
-          </a>
+          </Link>
         </div>
       </aside>
 
@@ -79,9 +122,45 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-lg">search</span>
               <input 
                 className="w-full bg-surface-container-highest/40 border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/50 text-on-surface-variant placeholder:text-slate-500" 
-                placeholder="Pesquisar frota, clientes ou contratos..." 
+                placeholder="Pesquisar frota por placa ou modelo..." 
                 type="text"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                onFocus={() => searchQuery.length > 1 && setShowResults(true)}
               />
+              {showResults && searchResults.length > 0 && (
+                <div className="absolute top-full left-0 w-full bg-surface-container-high mt-2 rounded-2xl shadow-2xl border border-outline-variant overflow-hidden z-[60] animate-in fade-in zoom-in-95 duration-200">
+                  <div className="p-2 border-b border-outline-variant/30 text-[10px] font-bold uppercase tracking-widest text-slate-500 flex justify-between">
+                    <span>Resultados da Frota</span>
+                    <span>{searchResults.length} encontrados</span>
+                  </div>
+                  {searchResults.map((v) => (
+                    <button 
+                      key={v.id}
+                      onClick={() => handleSelectVehicle(v)}
+                      className="w-full flex items-center gap-4 px-4 py-3 hover:bg-primary/10 transition-colors text-left group"
+                    >
+                      <div className="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center font-bold text-xs text-primary group-hover:bg-primary group-hover:text-on-primary transition-all">
+                        {v.brand.substring(0, 2).toUpperCase()}
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-bold text-on-surface">{v.model}</p>
+                        <p className="text-[10px] font-mono text-slate-500">{v.plate}</p>
+                      </div>
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
+                        v.status === 'available' ? 'text-emerald-400' : 'text-tertiary'
+                      }`}>
+                        {v.status === 'available' ? 'Livre' : 'Alugado'}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
+              {showResults && searchQuery.length > 1 && searchResults.length === 0 && (
+                <div className="absolute top-full left-0 w-full bg-surface-container-high mt-2 rounded-2xl p-4 text-center border border-outline-variant z-[60]">
+                   <p className="text-xs text-slate-500 italic">Nenhum veículo encontrado para "{searchQuery}"</p>
+                </div>
+              )}
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -104,8 +183,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="h-8 w-px bg-slate-800 mx-2"></div>
             <div className="flex items-center gap-3 pl-2">
               <div className="text-right hidden sm:block">
-                <p className="text-xs font-bold text-slate-100">{user.name || 'Usuário'}</p>
-                <p className="text-[10px] text-slate-500 uppercase tracking-widest">ID #{user.id || '---'}</p>
+                <p className="text-xs font-bold text-on-surface">{user.name || 'Usuário'}</p>
+                <p className="text-[10px] text-on-surface-variant lowercase font-medium">{user.email || '---'}</p>
               </div>
               <div className="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30 text-primary font-bold text-sm">
                 {user.name ? user.name[0] : 'U'}

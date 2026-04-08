@@ -65,11 +65,12 @@ const Maintenance: React.FC = () => {
           title: 'Manutenção Registrada!',
           message: 'A manutenção foi lançada com sucesso no sistema.'
         });
-        // Set editing ID to stay in the edit screen as requested
-        setEditingId(response.id);
       }
 
       fetchData();
+      setShowForm(false);
+      setEditingId(null);
+      reset();
     } catch (err: any) {
       setDialog({
         isOpen: true,
