@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://api-locadora.vipserver.dev.br';
 
 interface RequestOptions extends RequestInit {
   params?: Record<string, string>;
