@@ -16,10 +16,11 @@ Este projeto foi inicializado através do **Vite** e utiliza a seguinte stack te
 
 ## 🎨 Design System e Temas (Light/Dark)
 
-O padrão de estilo da LocaCar foi projetado priorizando contrastes refinados. 
+O padrão de estilo da LocaCar foi projetado priorizando contrastes refinados.
 Não dependemos de bibliotecas de componentes acopladas. Criamos nossos próprios painéis "glassmorphism", tipografia moderna e modais com entrada animada (`animate-in`).
 
 A alternância entre temas Claro (**Light**) e Escuro (**Dark**) da UI é suportada nativamente:
+
 - As cores base estão expostas como variáveis CSS de raiz (ex: `--surface`, `--primary`) no `src/index.css`.
 - O Tailwind foi estendido (`tailwind.config.js`) para capturar as cores dinâmicas via `var(--nome-variavel)`.
 - A lógica de transição entre temas em tempo real é controlada de forma global usando a Context API em `src/utils/ThemeContext.tsx`, que também suporta salvamento persistenciado via `localStorage`.
@@ -51,11 +52,13 @@ frontend/
 ## ⚙️ Instalação e Execução (Desenvolvimento)
 
 1. **Instale as dependências** do projeto:
+
    ```bash
    npm install
    ```
 
 2. **Inicie o servidor de desenvolvimento**:
+
    ```bash
    npm run dev
    ```
@@ -64,7 +67,7 @@ frontend/
 
 ## 🛡️ Roteamento e Autenticação
 
-A aplicação utiliza um wrapper `<ProtectedRoute />` na camada principal visual (dentro do `App.tsx`), garantindo que apenas usuários com um `locacar_token` válido no *localStorage* consigam acessar os painéis vitais (como Dashboard e Veículos). Retornos `HTTP 401 Unauthorized` lançados na `api.ts` redirecionam o usuário automaticamente e forçam a limpeza da sessão.
+A aplicação utiliza um wrapper `<ProtectedRoute />` na camada principal visual (dentro do `App.tsx`), garantindo que apenas usuários com um `locacar_token` válido no _localStorage_ consigam acessar os painéis vitais (como Dashboard e Veículos). Retornos `HTTP 401 Unauthorized` lançados na `api.ts` redirecionam o usuário automaticamente e forçam a limpeza da sessão.
 
 ## 🚢 Deploy e Produção
 
@@ -72,4 +75,4 @@ Foi implementado um **Dockerfile otimizado baseado em Nginx**. O método utiliza
 
 ## 🔗 Links Úteis
 
-* **Repositório Adicional / Backend:** [https://github.com/pvbinatto/locacao-frontend](https://github.com/pvbinatto/locacao-frontend)
+- **Repositório Adicional / Backend:** [https://github.com/pvbinatto/locacao-backend](https://github.com/pvbinatto/locacao-backend)
