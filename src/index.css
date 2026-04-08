@@ -3,14 +3,91 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  /* Default to dark mode colors */
+  --primary: #c3c0ff;
+  --on-primary: #1d00a5;
+  --primary-container: #493fdf;
+  --on-primary-container: #d0cdff;
+  
+  --secondary: #b7c8e1;
+  --on-secondary: #213145;
+  --secondary-container: #3a4a5f;
+  --on-secondary-container: #a9bad3;
+  
+  --tertiary: #ffb784;
+  --on-tertiary: #502500;
+  --tertiary-container: #8f4700;
+  --on-tertiary-container: #ffc7a2;
+  
+  --surface: #0b1326;
+  --on-surface: #dae2fd;
+  --surface-variant: #2d3449;
+  --on-surface-variant: #c5c5d4;
+  
+  --background: #0b1326;
+  --on-background: #dae2fd;
+  
+  --surface-container-lowest: #060e20;
+  --surface-container-low: #131b2e;
+  --surface-container: #171f33;
+  --surface-container-high: #222a3d;
+  --surface-container-highest: #2d3449;
+  
+  --outline: #8f909e;
+  --outline-variant: #454652;
+  
+  --error: #ffb4ab;
+  --on-error: #690005;
+  
+  --glass-bg: rgba(23, 31, 51, 0.6);
+  --border-color: rgba(30, 41, 59, 0.3);
+}
+
+.light {
+  --primary: #4f46e5;
+  --on-primary: #ffffff;
+  --primary-container: #e0e7ff;
+  --on-primary-container: #1e1b4b;
+  
+  --secondary: #475569;
+  --on-secondary: #ffffff;
+  --secondary-container: #f1f5f9;
+  --on-secondary-container: #1e293b;
+  
+  --tertiary: #ea580c;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #ffedd5;
+  --on-tertiary-container: #7c2d12;
+  
+  --surface: #ffffff;
+  --on-surface: #0f172a;
+  --surface-variant: #f1f5f9;
+  --on-surface-variant: #475569;
+  
+  --background: #f8fafc;
+  --on-background: #0f172a;
+  
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f8fafc;
+  --surface-container: #f1f5f9;
+  --surface-container-high: #e2e8f0;
+  --surface-container-highest: #cbd5e1;
+  
+  --outline: #94a3b8;
+  --outline-variant: #e2e8f0;
+  
+  --error: #dc2626;
+  --on-error: #ffffff;
+  
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --border-color: rgba(226, 232, 240, 0.8);
 }
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @apply bg-surface text-on-surface font-body;
+  @apply bg-surface text-on-surface font-body transition-colors duration-300;
 }
 
 /* Hide scrollbar for clean UI */
@@ -19,18 +96,18 @@ body { -ms-overflow-style: none; scrollbar-width: none; }
 
 @layer components {
   .glass-effect {
-    background: rgba(23, 31, 51, 0.6);
+    background: var(--glass-bg);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
   }
   
   .glass-panel {
-    background: rgba(34, 42, 61, 0.6);
+    background: var(--glass-bg);
     backdrop-filter: blur(24px);
   }
 
   .auth-gradient {
-    background: linear-gradient(135deg, #c3c0ff 0%, #493fdf 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
   }
 }
 

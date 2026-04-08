@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useTheme } from '../utils/ThemeContext';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,6 +9,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
   const user = JSON.parse(localStorage.getItem('locacar_user') || '{}');
 
   const handleLogout = () => {
@@ -83,8 +85,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <button className="hover:text-primary hover:bg-surface-container rounded-full p-2 transition-all">
-              <span className="material-symbols-outlined">dark_mode</span>
+            <button 
+              onClick={toggleTheme}
+              className="hover:text-primary hover:bg-surface-container rounded-full p-2 transition-all"
+              title={theme === 'light' ? 'Ativar modo escuro' : 'Ativar modo claro'}
+            >
+              <span className="material-symbols-outlined">
+                {theme === 'light' ? 'dark_mode' : 'light_mode'}
+              </span>
             </button>
             <button className="hover:text-primary hover:bg-surface-container rounded-full p-2 transition-all relative">
               <span className="material-symbols-outlined">notifications</span>

@@ -12,9 +12,12 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   return <>{children}</>;
 };
 
+import { ThemeProvider } from './utils/ThemeContext';
+
 function App() {
   return (
-    <BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Login />} />
@@ -25,7 +28,8 @@ function App() {
         <Route path="/maintenance" element={<ProtectedRoute><Maintenance /></ProtectedRoute>} />
         <Route path="/" element={<Navigate to="/login" replace />} />
       </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
