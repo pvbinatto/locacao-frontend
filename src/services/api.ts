@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api-locadora.vipserver.dev.br';
+const BASE_URL = 'http://localhost:3000';
 
 interface RequestOptions extends RequestInit {
   params?: Record<string, string>;
@@ -49,6 +49,7 @@ export const vehicleApi = {
   create: (data: any) => api('/vehicles', { method: 'POST', body: JSON.stringify(data) }),
   update: (id: string, data: any) => api(`/vehicles/${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
   getByPlate: (plate: string) => api(`/vehicles/plate/${plate}`),
+  getMaintenanceCount: () => api('/vehicles/maintenance/count'),
 };
 
 export const dashboardApi = {

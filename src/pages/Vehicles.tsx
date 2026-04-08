@@ -45,10 +45,16 @@ const Vehicles: React.FC = () => {
     message: '',
   });
 
+  const [maintenanceCount, setMaintenanceCount] = useState<number>(0);
+
   const fetchVehicles = async () => {
     try {
-      const data = await vehicleApi.list();
-      setVehicles(data);
+      const [vehiclesData, count] = await Promise.all([
+        vehicleApi.list(),
+        vehicleApi.getMaintenanceCount()
+      ]);
+      setVehicles(vehiclesData);
+      setMaintenanceCount(count);
     } catch (err: any) {
       console.error(err.message);
     } finally {
@@ -156,7 +162,7 @@ const Vehicles: React.FC = () => {
     { label: 'Frota Total', value: vehicles.length.toString(), change: '+12%', color: 'primary' },
     { label: 'Disponível', value: vehicles.filter(v => v.status === 'available').length.toString(), icon: 'check_circle', color: 'emerald' },
     { label: 'Locado', value: vehicles.filter(v => v.status === 'rented').length.toString(), icon: 'key', color: 'tertiary' },
-    { label: 'Em Manutenção', value: vehicles.filter(v => v.status === 'maintenance').length.toString(), icon: 'build', color: 'error' },
+    { label: 'Em Manutenção', value: maintenanceCount.toString(), icon: 'build', color: 'error' },
   ];
 
   return (
