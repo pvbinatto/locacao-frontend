@@ -1,0 +1,32 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import Vehicles from './pages/Vehicles';
+import Customers from './pages/Customers';
+import Rentals from './pages/Rentals';
+import Maintenance from './pages/Maintenance';
+
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const token = localStorage.getItem('locacar_token');
+  if (!token) return <Navigate to="/login" replace />;
+  return <>{children}</>;
+};
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Login />} />
+        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/vehicles" element={<ProtectedRoute><Vehicles /></ProtectedRoute>} />
+        <Route path="/customers" element={<ProtectedRoute><Customers /></ProtectedRoute>} />
+        <Route path="/rentals" element={<ProtectedRoute><Rentals /></ProtectedRoute>} />
+        <Route path="/maintenance" element={<ProtectedRoute><Maintenance /></ProtectedRoute>} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;

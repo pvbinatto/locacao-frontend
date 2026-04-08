@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kinetic Fleet | Autenticação</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#c3c0ff",
+              "on-secondary": "#213145",
+              "inverse-surface": "#dae2fd",
+              "tertiary": "#ffb784",
+              "surface-container-high": "#222a3d",
+              "on-background": "#dae2fd",
+              "on-primary": "#1d00a5",
+              "on-tertiary-container": "#ffc7a2",
+              "surface-dim": "#0b1326",
+              "on-tertiary": "#502500",
+              "secondary-fixed": "#d3e4fe",
+              "tertiary-fixed-dim": "#ffb784",
+              "inverse-on-surface": "#283044",
+              "surface-container-lowest": "#060e20",
+              "surface-tint": "#c3c0ff",
+              "secondary-container": "#3a4a5f",
+              "on-error": "#690005",
+              "error-container": "#93000a",
+              "on-surface-variant": "#c5c5d4",
+              "inverse-primary": "#4d44e3",
+              "secondary-fixed-dim": "#b7c8e1",
+              "surface-container-highest": "#2d3449",
+              "secondary": "#b7c8e1",
+              "on-primary-container": "#d0cdff",
+              "surface": "#0b1326",
+              "on-secondary-fixed-variant": "#38485d",
+              "surface-bright": "#31394d",
+              "tertiary-container": "#8f4700",
+              "outline-variant": "#454652",
+              "on-tertiary-fixed": "#301400",
+              "outline": "#8f909e",
+              "primary-fixed-dim": "#c3c0ff",
+              "primary-container": "#493fdf",
+              "primary-fixed": "#e2dfff",
+              "error": "#ffb4ab",
+              "surface-container-low": "#131b2e",
+              "on-error-container": "#ffdad6",
+              "on-primary-fixed-variant": "#3323cc",
+              "on-secondary-container": "#a9bad3",
+              "background": "#0b1326",
+              "tertiary-fixed": "#ffdcc6",
+              "on-primary-fixed": "#0f0069",
+              "on-tertiary-fixed-variant": "#713700",
+              "surface-variant": "#2d3449",
+              "on-secondary-fixed": "#0b1c30",
+              "on-surface": "#dae2fd",
+              "surface-container": "#171f33"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-effect {
+        background: rgba(23, 31, 51, 0.6);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+      }
+      .auth-gradient {
+        background: linear-gradient(135deg, #c3c0ff 0%, #493fdf 100%);
+      }
+      /* Hide scrollbar for clean UI */
+      body::-webkit-scrollbar { display: none; }
+      body { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface min-h-screen flex items-center justify-center overflow-hidden selection:bg-primary/30">
+<!-- Background Decorative Elements -->
+<div class="fixed inset-0 -z-10">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-tertiary/5 blur-[120px] rounded-full"></div>
+</div>
+<!-- Main Auth Container -->
+<main class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 h-[921px] md:h-[800px] overflow-hidden rounded-xl shadow-2xl shadow-black/50 mx-4 md:mx-10 bg-surface-container-low">
+<!-- Left Side: Visual/Branding -->
+<section class="hidden md:flex flex-col justify-between p-12 relative overflow-hidden bg-surface-container">
+<div class="absolute inset-0 z-0">
+<img alt="Luxury sports car in a modern architecture setting" class="w-full h-full object-cover opacity-40 mix-blend-luminosity" data-alt="Sleek silver luxury sports car parked in a minimalist concrete architectural space with dramatic shadows and cool blue lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHXemF5r5n12_v45D9DXrS8Po0aM2rc8R1NKg8wfN3ama9zRK_7e8caRvLfqpch_Yq3m70GL7ODKjS6gJQPaI_3z53mQ_0XzrlxpcVzeZAFdB_UFIMOdwyWJCuDDxMyPnxbsoug5ZG6Dm8eONX8g6JrrIp7aJ1wqErdRp8PJUMxrw5mzCsGpvfpFkRPudgxOemDOo-EOzuukENlUop7JCLMDhtxb_HoU731MSDLCmvkeOMLOqNzgv_DUzI1eQeht-3DdsaOGwoq5M"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary font-bold" style="font-variation-settings: 'FILL' 1;">speed</span>
+</div>
+<h1 class="font-headline text-2xl font-black tracking-tighter text-on-surface">Kinetic Fleet</h1>
+</div>
+</div>
+<div class="relative z-10">
+<h2 class="font-headline text-4xl font-extrabold tracking-tight mb-4 leading-tight">
+                    Gestão de Frotas de <br/>
+<span class="text-primary italic">Alta Performance.</span>
+</h2>
+<p class="text-on-surface-variant max-w-md leading-relaxed">
+                    A plataforma multitenant definitiva para locadoras que buscam precisão, escala e controle total sobre cada ativo em movimento.
+                </p>
+<div class="mt-8 flex gap-4 items-center">
+<div class="flex -space-x-3">
+<img class="w-8 h-8 rounded-full border-2 border-surface-container" data-alt="Portrait of a professional man with a friendly smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3VEgdEDQZ6TorvLPp9JPbfrmCzPhnJ-VxN6lHhzNHeNfLIY9JYW5BxMR4z6Dok9Jjv5P0_dEcI_RwAtVP656zRLNjWI3ZaVEREiS1o7hBbRr3MEIYxg5Fx6K8wC7h9-WTaidDthgQXwyLyYSQthsae0tjeWQ8v4ZchgM8WGMiUqbyNSpRkNERdU2L7KQbMbeKMfY3B3lyoPScEl11i2IQBftFZiU0RuKxqjGhfcC1PnQjHNPkrte3uOKvnr3Yf-zFlSYHkqWmSe8"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface-container" data-alt="Portrait of a young woman executive with professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPq_hl1jP8mAMiGAeh9y4JYF8Xme7gjKXtDXTZteHtD13pzuvMuQgU3vBNPQLWv9BDNk7DVpJi9imqMbqe9lDbajxcODjzFJKbQRIHvERu5iWD07BQMbCzlBQzttbdJlaJ0BHiPyNyw926MtLVYmuTSfXPezDMDHdvYJduDxUNjelzeRz_Oe-0JV8u81__sLGdBm8_131Ds3cHWmactZRTHV7Qxl9uF_md4sES7G1vbWYCW9YpB5wFAhrngaA_HLlaY62PJNqcNGo"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface-container" data-alt="Portrait of a senior business leader with spectacles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDApq4dLBAsyOohKuhW0Lqgg4gYmp-x3eqpOhde7Dhn0yBWLfkUU3WIZoV8wdS1RIA0cwlO0TWeMh-FPs0r_3J3LQ0UVZ1kCxqAwAU-h3W8VXFAlmF4AI8w-WZLlrkd7KO4pXRRIFCAhPmQ3-OLPbPJyyQpQxnJvXzM80sazw6UMzKV5BLrd6BsvjIM16YnHJx4ryoo7gvpEBeasrUmfba6dEBBBIBwrC4_f_r_XmrALvU2VoTk9ZkQVoApcY3YomhzWVHxfgmMg6Q"/>
+</div>
+<span class="text-xs font-label tracking-wide text-on-surface/60">+500 Empresas gerenciadas hoje</span>
+</div>
+</div>
+</section>
+<!-- Right Side: Auth Forms -->
+<section class="flex flex-col p-8 md:p-16 justify-center bg-surface relative">
+<!-- Mobile Brand Header -->
+<div class="md:hidden flex items-center gap-3 mb-10">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-sm" style="font-variation-settings: 'FILL' 1;">speed</span>
+</div>
+<h1 class="font-headline text-xl font-black tracking-tighter text-on-surface">Kinetic Fleet</h1>
+</div>
+<!-- Toggle Switch -->
+<div class="flex bg-surface-container-highest p-1 rounded-xl mb-10 w-full md:w-fit self-center">
+<button class="px-8 py-2.5 rounded-lg text-sm font-label font-semibold transition-all duration-300 bg-surface text-on-surface shadow-lg" onclick="document.getElementById('login-form').classList.remove('hidden'); document.getElementById('register-form').classList.add('hidden'); this.classList.add('bg-surface', 'text-on-surface', 'shadow-lg'); this.nextElementSibling.classList.remove('bg-surface', 'text-on-surface', 'shadow-lg'); this.nextElementSibling.classList.add('text-on-surface-variant')">
+                    Entrar
+                </button>
+<button class="px-8 py-2.5 rounded-lg text-sm font-label font-semibold transition-all duration-300 text-on-surface-variant" onclick="document.getElementById('register-form').classList.remove('hidden'); document.getElementById('login-form').classList.add('hidden'); this.classList.add('bg-surface', 'text-on-surface', 'shadow-lg'); this.previousElementSibling.classList.remove('bg-surface', 'text-on-surface', 'shadow-lg'); this.previousElementSibling.classList.add('text-on-surface-variant')">
+                    Criar Conta
+                </button>
+</div>
+<!-- Login Form -->
+<div class="space-y-6 transition-all duration-500 animate-in fade-in slide-in-from-bottom-4" id="login-form">
+<header>
+<h3 class="font-headline text-2xl font-bold text-on-surface mb-2">Bem-vindo de volta</h3>
+<p class="text-on-surface-variant text-sm">Acesse sua central de comando para gerenciar sua frota.</p>
+</header>
+<div class="space-y-4">
+<div class="space-y-1">
+<label class="text-xs font-label font-medium text-on-surface-variant uppercase tracking-widest ml-1">Email Corporativo</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3.5 pl-12 pr-4 text-sm focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-on-surface/20" placeholder="exemplo@empresa.com" type="email"/>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between items-center">
+<label class="text-xs font-label font-medium text-on-surface-variant uppercase tracking-widest ml-1">Senha</label>
+<a class="text-[10px] text-primary/80 hover:text-primary font-semibold uppercase tracking-wider" href="#">Esqueceu?</a>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3.5 pl-12 pr-4 text-sm focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-on-surface/20" placeholder="••••••••" type="password"/>
+</div>
+</div>
+</div>
+<button class="w-full auth-gradient text-on-primary font-headline font-bold py-4 rounded-xl shadow-lg shadow-primary/10 hover:scale-[1.01] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group">
+<span>Acessar Dashboard</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<div class="relative py-2">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-surface-container-highest"></div></div>
+<div class="relative flex justify-center text-[10px] uppercase tracking-widest"><span class="bg-surface px-4 text-on-surface/30">ou continue com SSO</span></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 py-3 rounded-xl border border-surface-container-highest hover:bg-surface-container-low transition-colors text-sm font-medium">
+<img alt="Google" class="w-4 h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ9K-3pjxfPRylIHCycoAb6jaf5ObrUVy426fabAe6q84qDk7UtXeV9GdyrW5A3LHknbqbqGAqVi1U8O1gI4ZqKr-SjtZaKLA0tVv7vV2mlOhXkVWvSGjnzq6OR3_mHE99hMxdUM_9jmI0klXHvoFxdSWqYjYmv4QkjcL2m8gpQDu0ZHakOV8x8Nd8WdqDJTaXh-OM616XKbyxuRwgvDiUB4PMu3TZXsqLfoKNPk63D5P3UsWKIVuqfZMEHp2wmvOKKZr5Iwckekk"/> Google
+                    </button>
+<button class="flex items-center justify-center gap-2 py-3 rounded-xl border border-surface-container-highest hover:bg-surface-container-low transition-colors text-sm font-medium">
+<img alt="Microsoft" class="w-4 h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9_2b2TfKLvdGDVCo4r4e_SAG7RLpwh_TDKzRDrYszx8UyPQk2pCWURUmNEMZzjnp4lg9r_jdUSTdomQgMEQGG0IRkvPBaQSew8OP59bldPAsKl1eJ_IdBHHY89GPaUQ-sL-mIOBrm0pTJQKBdE4OiE5dQuMqyrT-6BVwqCspHWW-7Fha818u4tKHiaekWdvL-vhOhNFnyClO4k961CYjbqWt-XfXErIA25s9JLKb5vGwLgYwDDNczMXwxzsmICznC9Iqq2HP_eaM"/> Microsoft
+                    </button>
+</div>
+</div>
+<!-- Registration Form (Hidden by default) -->
+<div class="hidden space-y-5 transition-all duration-500 animate-in fade-in slide-in-from-bottom-4" id="register-form">
+<header>
+<h3 class="font-headline text-2xl font-bold text-on-surface mb-2">Configure sua Unidade</h3>
+<p class="text-on-surface-variant text-sm">Crie seu novo ambiente <span class="text-primary font-semibold">Tenant</span> em segundos.</p>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="text-[10px] font-label font-medium text-on-surface-variant uppercase tracking-widest ml-1">Nome Completo</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 text-sm focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-on-surface/20" placeholder="Seu nome" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="text-[10px] font-label font-medium text-on-surface-variant uppercase tracking-widest ml-1">Email Profissional</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 text-sm focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-on-surface/20" placeholder="email@empresa.com" type="email"/>
+</div>
+<div class="space-y-1">
+<label class="text-[10px] font-label font-medium text-on-surface-variant uppercase tracking-widest ml-1">Telefone</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 text-sm focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-on-surface/20" placeholder="(11) 99999-9999" type="tel"/>
+</div>
+<div class="space-y-1">
+<label class="text-[10px] font-label font-medium text-primary uppercase tracking-widest ml-1">Nome da Empresa</label>
+<input class="w-full bg-primary/5 border border-primary/20 rounded-xl py-3 px-4 text-sm focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-primary/20 ring-1 ring-primary/10" placeholder="Ex: Fleet Solutions Ltda" type="text"/>
+</div>
+</div>
+<!-- Tenant Creation Visualizer -->
+<div class="bg-surface-container-highest/40 p-4 rounded-xl border border-primary/10 flex items-start gap-3">
+<div class="mt-1 bg-tertiary/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-tertiary text-lg">domain_add</span>
+</div>
+<div>
+<p class="text-[11px] font-semibold text-tertiary uppercase tracking-wider mb-1">Criação de Tenant Ativa</p>
+<p class="text-[11px] text-on-surface-variant leading-relaxed">Ao prosseguir, você criará um ambiente isolado de dados para sua empresa. Você será o <strong>Administrador Global</strong> deste tenant.</p>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-2">
+<input class="rounded bg-surface-container-low border-surface-container-highest text-primary focus:ring-primary/40" id="terms" type="checkbox"/>
+<label class="text-[10px] text-on-surface-variant" for="terms">Concordo com os <a class="underline text-primary" href="#">Termos de Serviço</a> e <a class="underline text-primary" href="#">Privacidade</a>.</label>
+</div>
+<button class="w-full auth-gradient text-on-primary font-headline font-bold py-4 rounded-xl shadow-lg shadow-primary/10 hover:scale-[1.01] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span>Criar Minha Empresa</span>
+<span class="material-symbols-outlined">rocket_launch</span>
+</button>
+</div>
+<!-- Footer Meta -->
+<footer class="mt-auto pt-8 flex justify-between items-center text-[10px] text-on-surface-variant/40 font-label uppercase tracking-widest">
+<span>© 2024 Kinetic Fleet</span>
+<div class="flex gap-4">
+<a class="hover:text-primary transition-colors" href="#">Suporte</a>
+<a class="hover:text-primary transition-colors" href="#">API</a>
+</div>
+</footer>
+</section>
+</main>
+<!-- Global Layout Decorative Blur -->
+<div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[819px] bg-primary/5 blur-[180px] -z-20 pointer-events-none"></div>
+</body></html>

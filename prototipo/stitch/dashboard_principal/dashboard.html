@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kinetic Fleet | Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#c3c0ff",
+              "on-secondary": "#213145",
+              "inverse-surface": "#dae2fd",
+              "tertiary": "#ffb784",
+              "surface-container-high": "#222a3d",
+              "on-background": "#dae2fd",
+              "on-primary": "#1d00a5",
+              "on-tertiary-container": "#ffc7a2",
+              "surface-dim": "#0b1326",
+              "on-tertiary": "#502500",
+              "secondary-fixed": "#d3e4fe",
+              "tertiary-fixed-dim": "#ffb784",
+              "inverse-on-surface": "#283044",
+              "surface-container-lowest": "#060e20",
+              "surface-tint": "#c3c0ff",
+              "secondary-container": "#3a4a5f",
+              "on-error": "#690005",
+              "error-container": "#93000a",
+              "on-surface-variant": "#c5c5d4",
+              "inverse-primary": "#4d44e3",
+              "secondary-fixed-dim": "#b7c8e1",
+              "surface-container-highest": "#2d3449",
+              "secondary": "#b7c8e1",
+              "on-primary-container": "#d0cdff",
+              "surface": "#0b1326",
+              "on-secondary-fixed-variant": "#38485d",
+              "surface-bright": "#31394d",
+              "tertiary-container": "#8f4700",
+              "outline-variant": "#454652",
+              "on-tertiary-fixed": "#301400",
+              "outline": "#8f909e",
+              "primary-fixed-dim": "#c3c0ff",
+              "primary-container": "#493fdf",
+              "primary-fixed": "#e2dfff",
+              "error": "#ffb4ab",
+              "surface-container-low": "#131b2e",
+              "on-error-container": "#ffdad6",
+              "on-primary-fixed-variant": "#3323cc",
+              "on-secondary-container": "#a9bad3",
+              "background": "#0b1326",
+              "tertiary-fixed": "#ffdcc6",
+              "on-primary-fixed": "#0f0069",
+              "on-tertiary-fixed-variant": "#713700",
+              "surface-variant": "#2d3449",
+              "on-secondary-fixed": "#0b1c30",
+              "on-surface": "#dae2fd",
+              "surface-container": "#171f33"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+        }
+        .glass-panel {
+            background: rgba(34, 42, 61, 0.6);
+            backdrop-filter: blur(24px);
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary/30">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="w-64 h-screen hidden md:flex flex-col sticky left-0 top-0 bg-[#131b2e] dark:bg-slate-900 z-40">
+<div class="p-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="speed">speed</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tighter text-[#c3c0ff] font-headline">Kinetic Fleet</h1>
+<p class="text-[10px] text-slate-400 uppercase tracking-widest font-medium">Enterprise Management</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-[#222a3d] text-[#c3c0ff] border-l-4 border-[#c3c0ff] rounded-r-lg font-['Manrope'] tracking-tight text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-100 hover:bg-[#171f33] transition-colors font-['Manrope'] tracking-tight text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="directions_car">directions_car</span>
+                    Vehicles
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-100 hover:bg-[#171f33] transition-colors font-['Manrope'] tracking-tight text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+                    Customers
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-100 hover:bg-[#171f33] transition-colors font-['Manrope'] tracking-tight text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="key">key</span>
+                    Rentals
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-100 hover:bg-[#171f33] transition-colors font-['Manrope'] tracking-tight text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+</nav>
+<div class="mt-auto p-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-100 hover:bg-[#171f33] transition-colors font-['Manrope'] tracking-tight text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                    Support
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-100 hover:bg-[#171f33] transition-colors font-['Manrope'] tracking-tight text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                    Documentation
+                </a>
+</div>
+</aside>
+<main class="flex-1 flex flex-col min-w-0 bg-surface">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-6 py-3 z-50 bg-[#0b1326]/80 backdrop-blur-xl sticky top-0 shadow-sm shadow-indigo-500/5">
+<div class="flex items-center flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-lg">search</span>
+<input class="w-full bg-slate-800/40 border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-[#c3c0ff]/50 text-on-surface-variant placeholder:text-slate-500" placeholder="Search fleet, customers, or contracts..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="hover:text-[#c3c0ff] hover:bg-slate-800/40 rounded-full p-2 transition-all">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+<button class="hover:text-[#c3c0ff] hover:bg-slate-800/40 rounded-full p-2 transition-all relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-tertiary rounded-full"></span>
+</button>
+<button class="hover:text-[#c3c0ff] hover:bg-slate-800/40 rounded-full p-2 transition-all">
+<span class="material-symbols-outlined" data-icon="swap_horiz">swap_horiz</span>
+</button>
+<div class="h-8 w-px bg-slate-800 mx-2"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-slate-100">Tenant Switcher</p>
+<p class="text-[10px] text-slate-500">Matriz São Paulo</p>
+</div>
+<img class="w-9 h-9 rounded-full object-cover border border-slate-700" data-alt="portrait of a professional male manager in a dark suit with a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWLN6YzQAGOnSMfdIga1jyLN3KkRr8T8FEH_sU86oUCL_R_bcVq2LSYKyDaMI-lbGbwVXOEnn_00p4-m94CW1zeP-cAw3gZxwlt-VObpSiCJgA8ZkrZWrTBS2FT-h0o_juiUoLEmqGwWti0iKNYgTsDHtLZOMC1qeFJFPELLrNpRLwI_8wadvuQ1Gx9mpXDtqd9mUvclkg7_0Bi15KeKcPRirxNNmUnndJVr8QcwGCCIOV9hqgRZecaOEL0CohD8IVSctxJcAf3-o"/>
+</div>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<!-- KPI Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Total Clientes -->
+<div class="bg-surface-container-low p-6 rounded-xl transition-all hover:bg-surface-container-high translate-y-0 hover:-translate-y-1">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="group">group</span>
+</div>
+<span class="text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded-full">+12%</span>
+</div>
+<p class="text-slate-400 text-xs font-medium font-label uppercase tracking-widest">Total Clientes</p>
+<h3 class="text-3xl font-extrabold font-headline mt-1 text-on-surface">1,284</h3>
+</div>
+<!-- Total Veículos -->
+<div class="bg-surface-container-low p-6 rounded-xl transition-all hover:bg-surface-container-high translate-y-0 hover:-translate-y-1">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-tertiary/10 rounded-lg">
+<span class="material-symbols-outlined text-tertiary" data-icon="directions_car">directions_car</span>
+</div>
+<span class="text-[10px] font-bold text-slate-400">98% Ativo</span>
+</div>
+<p class="text-slate-400 text-xs font-medium font-label uppercase tracking-widest">Total Veículos</p>
+<h3 class="text-3xl font-extrabold font-headline mt-1 text-on-surface">452</h3>
+</div>
+<!-- Total Faturado -->
+<div class="bg-surface-container-low p-6 rounded-xl transition-all hover:bg-surface-container-high border-b-2 border-primary/20 translate-y-0 hover:-translate-y-1">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="payments">payments</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-bold text-primary">Mês</span>
+<span class="text-[10px] text-slate-500">R$ 1.2M Ano</span>
+</div>
+</div>
+<p class="text-slate-400 text-xs font-medium font-label uppercase tracking-widest">Total Faturado</p>
+<h3 class="text-3xl font-extrabold font-headline mt-1 text-on-surface">R$ 142.5k</h3>
+</div>
+<!-- Total em Estoque -->
+<div class="bg-surface-container-low p-6 rounded-xl transition-all hover:bg-surface-container-high translate-y-0 hover:-translate-y-1">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-tertiary/10 rounded-lg">
+<span class="material-symbols-outlined text-tertiary" data-icon="inventory_2">inventory_2</span>
+</div>
+<span class="text-[10px] font-bold text-tertiary">Asset Value</span>
+</div>
+<p class="text-slate-400 text-xs font-medium font-label uppercase tracking-widest">Total em Estoque</p>
+<h3 class="text-3xl font-extrabold font-headline mt-1 text-on-surface">R$ 24.8M</h3>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Últimas Locações -->
+<div class="lg:col-span-2 space-y-4">
+<div class="flex justify-between items-end px-2">
+<h2 class="text-xl font-extrabold font-headline text-on-surface">Últimas Locações</h2>
+<button class="text-xs font-bold text-primary hover:underline">Ver todas</button>
+</div>
+<div class="bg-surface-container rounded-xl overflow-hidden">
+<table class="w-full text-left">
+<thead class="bg-surface-container-highest/30">
+<tr>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Data Locação</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Nome Cliente</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Veículo</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Valor</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest text-right">Ação</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-800/30">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 text-sm font-medium">12 Mai, 14:30</td>
+<td class="px-6 py-4 text-sm">Ricardo Oliveira</td>
+<td class="px-6 py-4 text-sm flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-slate-800 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="sleek silver sports car side view focused on wheel and aerodynamic body" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzZYIQPO8cIZXxSnb5kz0yLfzY_BpOj7IzyFF1VzPYRU_qMq7N3df45UuhX-43sDnV3YBEC5PQ9f1arHJ0jsuRD5aqduvpohd2B8FfAedNEak8DgPcFD4K3AINTGves7atbjmPdKZs2CUvJZKJ0jznGGXxmpB7yLrBjCfy3fDSOzQyUaJatmkqLpbiPAQnsIYUzlR3lHEpIOMTPymxTpp-_tlySpU530_5FxyVD7tmtdil7Z3-hPRp1bMrvljH7vS1Fh1k6xS-em8"/>
+</div>
+                                            BMW 320i
+                                        </td>
+<td class="px-6 py-4 text-sm font-bold text-primary">R$ 450,00</td>
+<td class="px-6 py-4 text-right">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-surface-container-highest rounded">
+<span class="material-symbols-outlined text-sm" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group border-none">
+<td class="px-6 py-4 text-sm font-medium">12 Mai, 11:15</td>
+<td class="px-6 py-4 text-sm">Amanda Costa</td>
+<td class="px-6 py-4 text-sm flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-slate-800 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="front view of a modern electric suv in matte grey finish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARycnVBOift-y27iDUSBT-1Bjft3t8nzrWHXto00BrOyL2Lo1LskTuGsEl1u-S_dfAfIL2k6EjJG3iTBn95Yh4Ixg9ZeZ1Ae7ZhPoeKFRTS6tuOGMXX8Agj0KJpA2016IXFu_RU7NJAPosmIYDPfGP_BUw-bKKlvWA3-hT5Tw2l0M99U089sULjbzzD7ooQ70wa3_ooMMKd9N6Y1ZtJlaJBxF0Php0XWUZk12uDjsHR_0up-JzQH0E3zISH_I2lUVIRkUAwUu3Jxs"/>
+</div>
+                                            Volvo XC40
+                                        </td>
+<td class="px-6 py-4 text-sm font-bold text-primary">R$ 680,00</td>
+<td class="px-6 py-4 text-right">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-surface-container-highest rounded">
+<span class="material-symbols-outlined text-sm" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group border-none">
+<td class="px-6 py-4 text-sm font-medium">11 Mai, 18:45</td>
+<td class="px-6 py-4 text-sm">Carlos Mendes</td>
+<td class="px-6 py-4 text-sm flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-slate-800 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="black executive sedan headlights close up in a studio lighting setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDx8HFv9U50nRSvK0Ma0ZxQjS-Df8XyGf_4Tn9EPfhNcuKsKS9MXUgxgAVjDGYy4L7G9W5r4hRqD0YZgprCDNxUFKKIkVdY6gppT6AwLjE8EDnfvAFZ9nctvACCiLU_WUH6ozTJO36svIFEX6BBnXIlkalVTnMP4pDZuoTFqT-VU_qez6Go0CkFBby2sq32FT0j1h4j6SeCqhLOQYJN1SxoHR5FXnUt6j9Ea7KKbouyJKkvFCztrzORAstQ5aOtSdPDjauPI7TgEk"/>
+</div>
+                                            Toyota Corolla
+                                        </td>
+<td class="px-6 py-4 text-sm font-bold text-primary">R$ 320,00</td>
+<td class="px-6 py-4 text-right">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-surface-container-highest rounded">
+<span class="material-symbols-outlined text-sm" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group border-none">
+<td class="px-6 py-4 text-sm font-medium">11 Mai, 15:20</td>
+<td class="px-6 py-4 text-sm">Juliana Silva</td>
+<td class="px-6 py-4 text-sm flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-slate-800 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="modern luxury car rear lights glowing in a dark showroom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYx2SA_V5FVRzShpUQtGCBISB-Ooop-pcKpqpn0pwfbsU5L3xvu7H4jhAvaKLjXu1-VDAEmXAQ9LhpS36c0Ht4LvkHYRKonl-WZBs7uUIiYS8w_Je4O2QwtCKeixzbTPP83P0Cbrr2UaTPVgIES1UqR39AJTBDH9ExHk-lbmTzfON1m-5fRRE7DmQZ1gjg-Bpo2d1MQ2norZ70w1jxSgYvwBEE8HGDmiBDP7TQprVD4yFH2gzDeqmzB6e9xKNVWD7VoDbhE_GQkqw"/>
+</div>
+                                            Audi A3
+                                        </td>
+<td class="px-6 py-4 text-sm font-bold text-primary">R$ 490,00</td>
+<td class="px-6 py-4 text-right">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-surface-container-highest rounded">
+<span class="material-symbols-outlined text-sm" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right Column: Devoluções do Dia -->
+<div class="space-y-4">
+<div class="flex justify-between items-end px-2">
+<h2 class="text-xl font-extrabold font-headline text-on-surface">Devoluções do Dia</h2>
+<div class="flex items-center gap-2">
+<span class="flex h-2 w-2 rounded-full bg-tertiary"></span>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">8 Pendentes</span>
+</div>
+</div>
+<div class="space-y-3">
+<!-- Card Devolução 1 -->
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center justify-between border-l-4 border-tertiary group hover:bg-surface-container-high transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" data-icon="key">key</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Jeep Compass</p>
+<p class="text-xs text-slate-500">Fernando Almeida</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs font-bold text-slate-400">14:00</p>
+<button class="text-[10px] font-bold text-tertiary uppercase tracking-tighter hover:underline">Check-in</button>
+</div>
+</div>
+<!-- Card Devolução 2 -->
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center justify-between border-l-4 border-tertiary group hover:bg-surface-container-high transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" data-icon="key">key</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Honda Civic</p>
+<p class="text-xs text-slate-500">Maria Fernanda</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs font-bold text-slate-400">16:30</p>
+<button class="text-[10px] font-bold text-tertiary uppercase tracking-tighter hover:underline">Check-in</button>
+</div>
+</div>
+<!-- Card Devolução 3 -->
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center justify-between border-l-4 border-slate-700 group hover:bg-surface-container-high transition-all opacity-60">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-400" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface line-through">VW Nivus</p>
+<p class="text-xs text-slate-500">Roberto Carlos</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs font-bold text-emerald-400">Concluído</p>
+<p class="text-[10px] text-slate-500">10:15</p>
+</div>
+</div>
+<button class="w-full py-4 border-2 border-dashed border-slate-800 rounded-xl text-slate-500 text-xs font-bold hover:border-slate-700 transition-colors uppercase tracking-widest">
+                                Agendar Nova Devolução
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-8 mt-auto flex flex-col md:flex-row justify-between items-center px-10 gap-4 bg-[#0b1326] dark:bg-slate-950 border-t border-slate-800/30">
+<p class="font-['Inter'] text-xs text-slate-500">© 2024 Kinetic Fleet Management. Academic Project Credit: UI Architecture Lab.</p>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-white transition-colors font-['Inter'] text-xs" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-white transition-colors font-['Inter'] text-xs" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-white transition-colors font-['Inter'] text-xs" href="#">API Reference</a>
+</div>
+</footer>
+</main>
+</div>
+<!-- Mobile BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center p-3 pb-6 bg-[#0b1326] dark:bg-slate-950 z-50 rounded-t-2xl border-t border-slate-800/50 shadow-[0_-4px_20px_rgba(0,0,0,0.4)]">
+<a class="flex flex-col items-center justify-center bg-[#222a3d] text-[#c3c0ff] rounded-xl px-4 py-1.5 font-['Inter'] text-[10px] font-medium uppercase tracking-widest transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span>Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-4 py-1.5 font-['Inter'] text-[10px] font-medium uppercase tracking-widest transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="directions_car">directions_car</span>
+<span>Cars</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-4 py-1.5 font-['Inter'] text-[10px] font-medium uppercase tracking-widest transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+<span>Rentals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-4 py-1.5 font-['Inter'] text-[10px] font-medium uppercase tracking-widest transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+<span>Menu</span>
+</a>
+</nav>
+<!-- FAB for Dashboard context -->
+<button class="fixed bottom-24 right-6 md:bottom-8 md:right-8 w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary-container shadow-lg shadow-primary/20 flex items-center justify-center text-on-primary active:scale-95 transition-transform z-40">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</body></html>
