@@ -46,9 +46,8 @@ const Maintenance: React.FC = () => {
         returnDate: data.returnDate ? new Date(data.returnDate).toISOString() : null,
       };
 
-      let response;
       if (editingId) {
-        response = await maintenanceApi.update(editingId, payload);
+        await maintenanceApi.update(editingId, payload);
         
         setDialog({
           isOpen: true,
@@ -57,7 +56,7 @@ const Maintenance: React.FC = () => {
           message: 'Os dados da manutenção foram atualizados com sucesso.'
         });
       } else {
-        response = await maintenanceApi.create(payload);
+        await maintenanceApi.create(payload);
         
         setDialog({
           isOpen: true,

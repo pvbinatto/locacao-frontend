@@ -69,3 +69,7 @@ A aplicação utiliza um wrapper `<ProtectedRoute />` na camada principal visual
 ## 🚢 Deploy e Produção
 
 Foi implementado um **Dockerfile otimizado baseado em Nginx**. O método utilizado (Multi-stage build) compila a SPA (Single Page Application) e expõe unicamente os arquivos minificados numa imagem Linux Alpina ultra-leve, estando pronta para ambientes como **Coolify** de forma imediata via conteinerização.
+
+## 🔗 Links Úteis
+
+* **Repositório Adicional / Backend:** [https://github.com/pvbinatto/locacao-frontend](https://github.com/pvbinatto/locacao-frontend)
